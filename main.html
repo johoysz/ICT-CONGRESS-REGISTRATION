@@ -1,0 +1,683 @@
+<div class="d-flex w3-card-4 w3-padding" style="background-color:#210b4f;justify-content:space-between;position: fixed;width: 100%;z-index: 2">
+	<div class="d-flex">
+		<img src="assets/css/uclogoround.png" style="width: 50px;height: 50px;margin-right: 10px;">
+		<h4 style="color:white; margin-top:10px">UNIVERSITY OF CEBU - MAIN CAMPUS</h4>
+	</div>
+	<div>
+		<button class="btn btn-secondary dropdown-toggle w3-round-xxlarge" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" fdprocessedid="npoom3" style="background-color: #210b4f;"> 
+			<img src="assets/css/j.png" style="width: 30px;height: 30px;margin-right: 10px;">ADMIN
+		</button>
+		<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+		<li><button onclick="changeContent('settings')" class="w3-button dropdown-item" type="button" type="button">Settings</button></li>
+		<li><button class="dropdown-item"  ng-click="logout()" type="button">Log out</button></li>
+		</ul>
+	</div>
+</div>
+
+<div class=" ">
+	<div class="sidebar-collapse" id="hideSidebar" style="display:block;">
+		<button id="dashboardBtn" class=" w3-button w3-hover-purple w3-round-large" onclick="changeContent('dashboard')">
+			<img src="assets/css/dashboard.png" style="margin-right: 10px;"> 
+		</button>
+		<button id="studentBtn" class=" w3-button w3-hover-purple w3-round-large" onclick="changeContent('student')">
+			<img src="assets/css/students.png" style="margin-right: 10px;"> 	
+		</button>
+		<button id="orderBtn" class=" w3-button w3-hover-purple w3-round-large" onclick="changeContent('order')">
+			<img src="assets/css/orders.png" style="margin-right: 10px;"> 
+		</button>
+		<button id="reportBtn" class=" w3-button w3-hover-purple w3-round-large"onclick="changeContent('report')">
+			<img src="assets/css/report.png" style="margin-right: 10px;">
+		</button>
+		<div class="hide-button" onclick="showSidebar()">
+			<div class="w3-center w3-button w3-hover-purple w3-round-large hide-image">
+				<img src="assets/css/expand.png">
+			</div>
+		</div>
+	</div>
+	
+	<div class="sidebar" id="showSidebar" style="display:none;">
+		<button id="dashboardBtn1" class="w3-button w3-hover-purple w3-round-large" onclick="changeContent1('dashboard')" >
+			<img src="assets/css/dashboard.png" style="margin-right: 10px;"> Dashboard
+		</button>
+		<button id="studentBtn1" class="w3-button w3-hover-purple w3-round-large" onclick="changeContent1('student')">
+			<img src="assets/css/students.png" style="margin-right: 10px;"> Students	
+		</button>
+		<button id="orderBtn1" class="w3-button w3-hover-purple w3-round-large" onclick="changeContent1('order')">
+			<img src="assets/css/orders.png" style="margin-right: 10px;"> Orders
+		</button>
+		<button id="reportBtn1" class="w3-button w3-hover-purple w3-round-large"onclick="changeContent1('report')">
+			<img src="assets/css/report.png" style="margin-right: 10px;"> Report
+		</button>
+		<div class="hide-button" onclick="hideSidebar()">
+			<div class="w3-center w3-button w3-hover-purple w3-round-large hide-image">
+				<img src="assets/css/collapse.png">
+			</div>
+		</div>
+	</div>
+	
+    <div id="dashboardContent" class="grid-child-element green" style=" display: block;margin-left: 180px;margin-top: 50px;position: absolute;z-index: 1;width: 90%;">
+		<div class="d-flex"style="padding: 50px;padding-bottom:0%;justify-content:space-between;">
+			<div class="d-flex">
+				<div><img src="assets/css/ccslogo.png" style="width: 50px;height: 50px;margin-right: 10px;"></div>
+				<div>
+					<h3 style="color:#381483;">Admin Dashboard</h3>
+					<p style="color:grey;">Monitored by PSITS and CSPS</p>
+				</div>
+			</div>
+			<div class="d-flex">
+				<img src="assets/css/logo.png" style="width: 50px;height: 50px;margin-right: 10px;">
+				<img src="assets/css/csps.png" style="width: 50px;height: 50px;margin-right: 10px;">
+			</div>
+		</div>
+
+
+		<div class="w3-container" style="padding: 50px;">
+			<div class="d-flex"> 
+
+
+				<div class="container row">
+					<div style="padding: 20px;border: 1px solid #b796fb;" class="w3-round-large col">
+						<div class="d-flex" style="justify-content:space-between;">
+							<div>
+								<h4>Registered Students</h4>
+								<p style="color:grey;">Students who successfully registered in the website</p>
+							</div>
+							<div>
+								<h1 style="color:#3F1B80;">{{ totalStudents() }}</h1>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<div class="w-100"></div>
+					<div style="padding: 20px;border: 1px solid #b796fb;margin-top: 3%;" class="w3-round-large col">
+						<div class="d-flex" style="justify-content:space-between;">
+							<div>
+								<h4>Total Revenue</h4>
+								<p style="color:grey;">ICT Congress Payments from all CSS programs</p>
+							</div>
+							<div class="d-flex">
+								<h1 style="color:#3F1B80;">{{ totalAmount() }}</h1>
+								<p>PHP</p>
+							</div>
+						</div>
+						<hr>
+					</div>
+				</div>
+				
+				<div class="container row">
+					<div style="background-image: linear-gradient(to right, #EAE2FA , #C7AAFA);margin-left:3%;padding: 20px;border: 1px solid #b796fb;" class="w3-round-large col">
+						<h6 style="color:#210B4F;">Students with insurance</h6>
+						<div class="d-flex" style="justify-content:space-between;">
+							<h1 style="color:#3F1B80;"><b>{{ checkedCount }}</b></h1>
+							<img src="assets/css/Users.png" style="width:20%;">
+						</div>
+					</div>
+					<div style="background-image: linear-gradient(to right, #DCEBFC , #AFD4FF);margin-left:3%;padding: 20px;border: 1px solid #b796fb;" class="w3-round-large col">
+						<h6 style="color:#210B4F;">Claimed T-shirt</h6>
+						<div class="d-flex" style="justify-content:space-between;">
+							<h1 style="color:#1D4B80;"><b>{{ checkedCount1 }}</b></h1>
+							<img src="assets/css/Users.png" style="width:20%;">
+						</div>
+					</div>
+					<div class="w-100"></div>
+					<div style="background-image: linear-gradient(to right, #FBF8DB , #FFE27C);margin-left:3%;margin-top:3%;padding: 20px;border: 1px solid #b796fb;" class="w3-round-large col">
+						<h6 style="color:#210B4F;">Students with consent</h6>
+						<div class="d-flex" style="justify-content:space-between;">
+							<h1 style="color:#E4BC2F;"><b>{{ checkedCount2 }}</b></h1>
+							<img src="assets/css/Users.png" style="width:20%;">
+						</div>
+					</div>
+					<div style="background-image: linear-gradient(to right, #FFFBFB , #B7B3BA);margin-left:3%;margin-top:3%;padding: 20px;border: 1px solid #b796fb;" class="w3-round-large col">
+						<h6 style="color:#210B4F;">Attended Event</h6>
+						<div class="d-flex" style="justify-content:space-between;">
+							<h1 style="color:#6B6B6B;"><b>{{ checkedCount3 }}</b></h1>
+							<img src="assets/css/Users.png" style="width:20%;">
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<br><br>
+			<div class="d-flex" style="justify-content:space-between;">
+
+						<div class="" style="border-radius: 10px;border: 1px solid #b796fb;width: 100%;">
+							<div class="d-flex" style="border-radius: 10px 10px 0px 0px;padding: 30px;padding-bottom: 10px;justify-content: space-between;background-color: #eee8f6;">
+								<h4 class="" style="color:#381483;"><b>STUDENTS LIST</b></h4>
+								<p class="" onclick="changeContent('student')" style="color:#381483; cursor: pointer;"><b>View All</b></p>
+							</div>
+							<div style="padding: 30px;">
+								<table class="table" id="myTable">
+									<thead>
+										<tr>
+											<th ng-repeat="h in header">{{ h | uppercase}}</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="s in list | filter:search track by $index">
+											<td>{{ $index+1 }}</td>
+											<td>{{ s.idno }}</td>
+											<td>{{ s.rfid }}</td>
+											<td>{{ s.lastname | uppercase}}</td>
+											<td>{{ s.firstname | uppercase}}</td>
+											<td>{{ s.course | uppercase}}</td>
+											<td>{{ s.level }}</td>
+											<td>{{ s.amount }}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+				</div>
+		</div>
+	
+	</div>
+
+	<!--FOR NEW CONTENT WHEN CLICKED-->
+		<div id="studentContent" class="grid-child-element green" style="display: none;margin-left: 180px;margin-top: 50px;position: absolute;z-index: 1;width: 90%;">
+			<div class="d-flex"style="padding: 50px;padding-bottom:0%;justify-content:space-between;">
+				<div class="d-flex">
+					<div><img src="assets/css/ccslogo.png" style="width: 50px;height: 50px;margin-right: 10px;"></div>
+					<div>
+						<h3 style="color:#381483;">STUDENT LIST</h3>
+						<p style="color:grey;">Monitored by PSITS and CSPS</p>
+					</div>
+				</div>
+				<div class="d-flex">
+					<img src="assets/css/logo.png" style="width: 50px;height: 50px;margin-right: 10px;">
+					<img src="assets/css/csps.png" style="width: 50px;height: 50px;margin-right: 10px;">
+				</div>
+			</div>
+			<div style="padding: 50px;padding-bottom:0%;justify-content:space-between;">
+					<br>
+					<div class="d-flex" style="justify-content:space-between;">
+						<div class="form-outline mb-4" data-mdb-input-init style="display:flex;width:30%;">
+							<h6 style="width:15%;margin-top:5px;">Page size</h6>
+							<select style="width:15%;" ng-model="pageSize" class="form-select form-select-sm">
+								<option ng-repeat="size in pagesizes" value="{{ size }}">{{ size }}</option>
+							</select>
+						</div>
+						<div class="d-flex form-outline mb-4" data-mdb-input-init>
+							<input type="text" placeholder="Search" ng-model="search" class="form-control" id="datatable-search-input">
+							</input>
+						</div>
+					</div>
+					<table class="w3-table-all display" id="myTable">
+								<thead>
+									<tr>
+										<th ng-repeat="h in header1">{{ h | uppercase}}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="s in list | filter:search track by $index">
+										<td>{{ $index+1 }}</td>
+										<td>{{ s.idno }}</td>
+										<td>{{ s.rfid }}</td>
+										<td>{{ s.lastname | uppercase}}</td>
+										<td>{{ s.firstname | uppercase}}</td>
+										<td>{{ s.course | uppercase}}</td>
+										<td>{{ s.level }}</td>
+										<td>
+											<div class="d-flex" style="width:20px;">
+												<button type="button" class="btn btn-primary w3-blue w3-round-medium" ng-click="editModal(s.idno,s.rfid,s.firstname,s.lastname,s.course,s.level)">Edit</button>
+												<button type="button" style="margin-left: 5px;" class="btn btn-danger w3-red w3-round-medium" ng-click="delete(s.idno)">Delete</button>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+					</table>
+					<br>
+					<div class="w3-left">
+						<button class="btn btn-primary" ng-disabled="currentPage==0" ng-click="currentPage=currentPage-1">Prev</button>
+							{{ currentPage+1 }} / {{ numberOfPages() }}
+						<button class="btn btn-primary" ng-disabled="currentPage>=students.length/pageSize-1" ng-click="currentPage=currentPage+1">Next</button>
+					</div>
+			</div>
+        </div>		
+		<!--Order Content-->
+		<div id="orderContent" class="grid-child-element green" style="display: none;margin-left: 180px;margin-top: 50px;position: absolute;z-index: 1;width: 90%;">
+			<div class="d-flex"style="padding: 50px;padding-bottom:0%;justify-content:space-between;">
+				<div class="d-flex">
+					<div><img src="assets/css/ccslogo.png" style="width: 50px;height: 50px;margin-right: 10px;"></div>
+					<div>
+						<h3 style="color:#381483;">ORDER LIST</h3>
+						<p style="color:grey;">Monitored by PSITS and CSPS</p>
+					</div>
+				</div>
+				<div class="d-flex">
+					<img src="assets/css/logo.png" style="width: 50px;height: 50px;margin-right: 10px;">
+					<img src="assets/css/csps.png" style="width: 50px;height: 50px;margin-right: 10px;">
+				</div>
+			</div>
+			<div style="padding: 50px;padding-bottom:0%;justify-content:space-between;">
+					<br>
+					<div class="d-flex" style="justify-content:space-between;">
+						<div class="form-outline mb-4" data-mdb-input-init style="display:flex;width:30%;">
+							<h6 style="width:15%;margin-top:5px;">Page size</h6>
+							<select style="width:15%;" ng-model="pageSize" class="form-select form-select-sm">
+								<option ng-repeat="size in pagesizes" value="{{ size }}">{{ size }}</option>
+							</select>
+						</div>
+						<div class="d-flex form-outline mb-4" data-mdb-input-init>
+							<input type="text" placeholder="Search" ng-model="search" class="form-control" id="datatable-search-input">
+							</input>
+						</div>
+					</div>
+					<table class="w3-table-all display" id="myTable">
+								<thead>
+									<tr>
+										<th ng-repeat="h in header2">{{ h | uppercase}}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="s in list | filter:search track by $index">
+										<td>{{ $index+1 }}</td>
+										<td>{{ s.idno }}</td>
+										<td>{{ s.size }}</td>
+										<td>{{ s.amount }}</td>
+										<td>
+											{{ s.insurance }}
+										</td>
+										<td>
+											{{ s.claimed }}
+										</td>
+										<td>
+											{{ s.consent }}
+										</td>
+										<td>
+											{{ s.attendance }}
+										</td>
+										<td>
+											<div class="d-flex" style="width:20px;">
+												<button type="button" class="btn btn-primary w3-blue w3-round-medium" ng-click="editOrderModal(s.idno,s.amount,s.size,s.insurance,s.claimed,s.consent,s.attendance)">Edit</button>
+												<button type="button" style="margin-left: 5px;" class="btn btn-danger w3-red w3-round-medium" ng-click="delete(s.idno)">Delete</button>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+					</table>
+					<br>
+					<div class="w3-left">
+						<button class="btn btn-primary" ng-disabled="currentPage==0" ng-click="currentPage=currentPage-1">Prev</button>
+							{{ currentPage+1 }} / {{ numberOfPages() }}
+						<button class="btn btn-primary" ng-disabled="currentPage>=students.length/pageSize-1" ng-click="currentPage=currentPage+1">Next</button>
+					</div>
+			</div>
+        </div>
+		
+		<!-- Report content-->
+		<div id="reportContent" class="grid-child-element green" style="display: none;margin-left: 180px;margin-top: 50px;position: absolute;z-index: 1;width: 90%;">
+			<div class="d-flex"style="padding: 50px;padding-bottom:0%;justify-content:space-between;">
+				<div class="d-flex">
+					<div><img src="assets/css/ccslogo.png" style="width: 50px;height: 50px;margin-right: 10px;"></div>
+					<div>
+						<h3 style="color:#381483;">REPORT CONTENT</h3>
+						<p style="color:grey;">Monitored by PSITS and CSPS</p>
+					</div>
+				</div>
+				<div class="d-flex">
+					<img src="assets/css/logo.png" style="width: 50px;height: 50px;margin-right: 10px;">
+					<img src="assets/css/csps.png" style="width: 50px;height: 50px;margin-right: 10px;">
+				</div>
+			</div>
+			<div style="padding: 50px;padding-bottom:0%;display:flex;justify-content:space-between;flex-direction: row;">
+					<div class="d-flex" style="width:40%;">
+						<button type="button" class="btn btn-primary w3-blue w3-round-medium" onclick="changeContent('revenue')">Total Revenue Report</button>
+					</div>
+					<div class="d-flex" style="width:40%;">
+						<button type="button" class="btn btn-primary w3-blue w3-round-medium" onclick="changeContent('list')">Student List Report</button>
+					</div>
+					<div class="d-flex" style="width:40%;">
+						<button type="button" class="btn btn-primary w3-blue w3-round-medium" onclick="changeContent('year')">Year List Report</button>
+					</div>
+					<div class="d-flex" style="width:40%;">
+						<button type="button" class="btn btn-primary w3-blue w3-round-medium" onclick="changeContent('registered')">Registered List Report</button>
+					</div>
+					<br> 	
+			</div>
+        </div>
+		<!--revenue report-->
+		<div id="revenueContent" class="grid-child-element green" style="display: none;margin-left: 180px;margin-top: 50px;position: absolute;z-index: 1;width: 90%;">
+			<div class="d-flex"style="padding: 50px;padding-bottom:0%;justify-content:space-between;">
+				<div class="d-flex">
+					<div><img src="assets/css/ccslogo.png" style="width: 50px;height: 50px;margin-right: 10px;"></div>
+					<div>
+						<h3 style="color:#381483;">TOTAL REVENUE REPORT</h3>
+						<p style="color:grey;">Monitored by PSITS and CSPS</p>
+					</div>
+				</div>
+				<div class="d-flex">
+					<img src="assets/css/logo.png" style="width: 50px;height: 50px;margin-right: 10px;">
+					<img src="assets/css/csps.png" style="width: 50px;height: 50px;margin-right: 10px;">
+				</div>
+			</div>
+			<div style="padding: 50px;padding-bottom:0%;justify-content:space-between;">
+					<br>
+					<div style="padding: 20px;border: 1px solid #b796fb;margin-top: 3%;" class="w3-round-large col">
+						<div class="d-flex" style="justify-content:space-between;">
+							<div>
+								<h4>Total Revenue</h4>
+								<p style="color:grey;">ICT Congress Payments from all CSS programs</p>
+							</div>
+							<div class="d-flex">
+								<h1 style="color:#3F1B80;">{{ totalAmount() }}</h1>
+								<p>PHP</p>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<br>
+					<div class="d-flex" style="width:40%;">
+						<button type="button" class="btn btn-primary w3-blue w3-round-medium" onclick="changeContent('report')">Back to report</button>
+					</div>
+					<br> 		
+
+			</div>
+        </div>
+		
+		<!--student list report-->
+		<div id="listContent" class="grid-child-element green" style="display: none;margin-left: 180px;margin-top: 50px;position: absolute;z-index: 1;width: 90%;">
+			<div class="d-flex"style="padding: 50px;padding-bottom:0%;justify-content:space-between;">
+				<div class="d-flex">
+					<div><img src="assets/css/ccslogo.png" style="width: 50px;height: 50px;margin-right: 10px;"></div>
+					<div>
+						<h3 style="color:#381483;">STUDENT LIST REPORT</h3>
+						<p style="color:grey;">Monitored by PSITS and CSPS</p>
+					</div>
+				</div>
+				<div class="d-flex">
+					<img src="assets/css/logo.png" style="width: 50px;height: 50px;margin-right: 10px;">
+					<img src="assets/css/csps.png" style="width: 50px;height: 50px;margin-right: 10px;">
+				</div>
+			</div>
+			<div style="padding: 50px;padding-bottom:0%;justify-content:space-between;">
+				<table class="w3-table-all display" id="myTable">
+					<thead>
+						<tr>
+							<th ng-repeat="h in header3">{{ h | uppercase}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="s in list | filter:search track by $index">
+							<td>{{ $index+1 }}</td>
+							<td>{{ s.idno }}</td>
+							<td>{{ s.rfid }}</td>
+							<td>{{ s.lastname | uppercase}}</td>
+							<td>{{ s.firstname | uppercase}}</td>
+							<td>{{ s.course | uppercase}}</td>
+							<td>{{ s.level }}</td>
+						</tr>
+					</tbody>
+				</table><br> 
+					<div class="d-flex" style="width:40%;">
+						<button type="button" class="btn btn-primary w3-blue w3-round-medium" onclick="changeContent('report')">Back to report</button>
+					</div>
+					<br> 		
+
+			</div>
+        </div>
+		<!--year list report-->
+		<div id="yearContent" class="grid-child-element green" style="display: none;margin-left: 180px;margin-top: 50px;position: absolute;z-index: 1;width: 90%;">
+			<div class="d-flex"style="padding: 50px;padding-bottom:0%;justify-content:space-between;">
+				<div class="d-flex">
+					<div><img src="assets/css/ccslogo.png" style="width: 50px;height: 50px;margin-right: 10px;"></div>
+					<div>
+						<h3 style="color:#381483;">YEAR LIST REPORT</h3>
+						<p style="color:grey;">Monitored by PSITS and CSPS</p>
+					</div>
+				</div>
+				<div class="d-flex">
+					<img src="assets/css/logo.png" style="width: 50px;height: 50px;margin-right: 10px;">
+					<img src="assets/css/csps.png" style="width: 50px;height: 50px;margin-right: 10px;">
+				</div>
+			</div>
+			<div style="padding: 50px;padding-bottom:0%;justify-content:space-between;">
+				<table class="w3-table-all display" id="myTable">
+					<thead>
+						<tr>
+							<th>Year Level</th>
+							<th>Count</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1st Year </td>
+							<td>{{ countYear("1st Year").count1 }}</td>
+						</tr>
+						<tr>
+							<td>2nd Year </td>
+							<td>{{ countYear("2nd Year").count2 }}</td>
+						</tr>
+						<tr>
+							<td>3rd Year </td>
+							<td>{{ countYear("3rd Year").count3 }}</td>
+						</tr>
+						<tr>
+							<td>4th Year </td>
+							<td>{{ countYear("4th Year").count4 }}</td>
+						</tr>
+					</tbody>
+				</table><br> 
+					<div class="d-flex" style="width:40%;">
+						<button type="button" class="btn btn-primary w3-blue w3-round-medium" onclick="changeContent('report')">Back to report</button>
+					</div>
+					<br> 		
+
+			</div>
+        </div>
+		<!--register report-->
+		<div id="registeredContent" class="grid-child-element green" style="display: none;margin-left: 180px;margin-top: 50px;position: absolute;z-index: 1;width: 90%;">
+			<div class="d-flex"style="padding: 50px;padding-bottom:0%;justify-content:space-between;">
+				<div class="d-flex">
+					<div><img src="assets/css/ccslogo.png" style="width: 50px;height: 50px;margin-right: 10px;"></div>
+					<div>
+						<h3 style="color:#381483;">REGISTERED LIST REPORT</h3>
+						<p style="color:grey;">Monitored by PSITS and CSPS</p>
+					</div>
+				</div>
+				<div class="d-flex">
+					<img src="assets/css/logo.png" style="width: 50px;height: 50px;margin-right: 10px;">
+					<img src="assets/css/csps.png" style="width: 50px;height: 50px;margin-right: 10px;">
+				</div>
+			</div>
+			<div style="padding: 50px;padding-bottom:0%;justify-content:space-between;">
+					<br>
+					<div style="padding: 20px;border: 1px solid #b796fb;margin-top: 3%;" class="w3-round-large col">
+						<div class="d-flex" style="justify-content:space-between;">
+							<div>
+								<h4>Registered Students</h4>
+								<p style="color:grey;">Students who successfully registered in the website</p>
+							</div>
+							<div>
+								<h1 style="color:#3F1B80;">{{ totalStudents() }}</h1>
+							</div>
+						</div>
+						<hr>
+					</div>
+					<br>
+					<div class="d-flex" style="width:40%;">
+						<button type="button" class="btn btn-primary w3-blue w3-round-medium" onclick="changeContent('report')">Back to report</button>
+					</div>
+					<br> 		
+
+			</div>
+        </div>
+		<!-- EDIT MODAL -->
+
+		<div class="w3-modal" id="openModal">
+
+			<div class="w3-modal-content w3-animate-top" style="border-radius:10px;">
+				<div class="w3-container" style="padding:30px;">
+					<div class="w3-container">
+					  <div class="modal-header">
+						<h3 class=" modal-title w3-center">EDIT DETAILS</h3>
+						<div class="w3-display-topright">
+							<span style="border-radius:10px;" class="w3-button" onclick="document.getElementById('openModal').style.display='none'">&times;</span>
+						</div>	
+					</div>
+						<form id="form" style="margin: 10px;">
+						  <div>
+							  <div class="w3-half" style="padding-right: 5px; padding-bottom: 5px;">
+								  <input type="text" id="idnoToShow" ng-model="idnoShow" class="w3-input w3-border" readonly>
+							  </div>
+							  <div class="w3-half" style="padding-right: 5px; padding-bottom: 5px;">
+								  <input type="text" id="rfidToShow" ng-model="rfidToShow" class="w3-input w3-border" readonly>
+							  </div>
+						  </div>
+						  <div>
+							  <div class="w3-half" style="padding-right: 5px; padding-bottom: 5px;">
+								  <input type="text" id="firstnameToShow" ng-model="firstnameToShow" name="Firstname" class="w3-input w3-border" placeholder="First name" >
+							  </div>
+							  <div class="w3-half" style="padding-left: 5px; padding-bottom: 5px;">
+								  <input type="text" id="lastnameToShow" ng-model="lastnameToShow" name="Lastname" class="w3-input w3-border" placeholder="Last name" >
+							  </div>
+						  </div>
+						  <div>
+							<div class="form-group w3-half">
+							
+							  <div id="courseInputWrapper" style="padding-right: 5px;">
+								<select ng-model="courseToShow" id="courseToShow" ng-model="course" class="form-select w3-select w3-border"  aria-label="Default select example">
+								  <option value="" selected disabled hidden>Course</option>
+								  <option value="BSCS">BSCS</option>
+								  <option value="BSIT">BSIT</option>
+								  <option value="ACT">ACT</option>
+								</select>
+							  </div>
+							</div>							
+							<div class="form-group w3-half">
+							  <div id="levelInputWrapper" style="padding-right: 5px;">
+								<select ng-model="levelToShow" id="levelToShow" ng-model="level" class="form-select w3-select w3-border"  aria-label="Default select example">
+								  <option value="" selected disabled hidden>Level</option>
+								  <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								</select>
+							  </div>
+							</div>	
+						  </div>
+						  <button style="border:none;"></button>
+						  <div class="w3-center">
+							<button class="w3-button w3-center w3-purple w3-round-medium" ng-click="saveEdit()">SAVE</button>
+						  </div>
+					</form>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!--EDIT MODAL ORDERS-->
+		<div class="w3-modal" id="openOrderModal">
+
+			<div class="w3-modal-content w3-animate-top" style="border-radius:10px; width: 50%;">
+				<div class="w3-container" style="padding:30px;">
+					<div class="w3-container">
+					  <div class="modal-header">
+						<h3 class=" modal-title w3-center">EDIT ORDER DETAILS</h3>
+						<span style="font-size: 11px;">
+							Note:
+								Only the amount and size can be edited
+						</span>
+						<div class="w3-display-topright">
+							<span style="border-radius:10px;" class="w3-button" onclick="document.getElementById('openOrderModal').style.display='none'">&times;</span>
+						</div>	
+					</div>
+						<form id="form" style="margin: 10px;">
+						  <div>
+								<p>ID Number
+									<input type="text" ng-model="idnoToShow" id="idnoToShow" class="w3-input w3-border">
+								</p>	
+								<p>Enter Amount
+									<input type="number" ng-model="amountToShow" id="amountToShow" class="w3-input w3-border" style="font-style:italic" placeholder="type amount..." autofocus>
+								</p>
+								<p>Select Size
+									<select ng-model="sizeToShow" id="sizeToShow"  class="form-select w3-select w3-border w3-input"  aria-label="Default select example">
+										<option value="" selected disabled hidden>Choose a size</option>
+										<option value="S">S</option>
+										<option value="M">M</option>
+										<option value="L">L</option>
+										<option value="XL">XL</option>
+										<option value="XXL">XXL</option>
+										<option value="XXXL">XXXL</option>
+									</select>
+								</p>
+						  </div>	
+						  <div>
+							<p>Insurance
+								<select ng-model="insuranceToShow" id="insuranceToShow"  class="form-select w3-select w3-border w3-input"  aria-label="Default select example">
+									
+									<option value="true">true</option>
+									<option value="false">false</option>
+								</select>
+							</p>
+					 	 </div>	
+						  <div>
+							<p>Claimed
+								<select ng-model="claimedToShow" id="claimedToShow"  class="form-select w3-select w3-border w3-input"  aria-label="Default select example">
+									<option value="" selected disabled hidden></option>
+									<option value="true">true</option>
+									<option value="false">false</option>
+								</select>
+							</p>
+					 	 </div>	
+						  <div>
+							<p>Consent
+								<select ng-model="consentToShow" id="consentToShow"  class="form-select w3-select w3-border w3-input"  aria-label="Default select example">
+									<option value="" selected disabled hidden></option>
+									<option value="true">true</option>
+									<option value="false">false</option>
+								</select>
+							</p>
+					 	 </div>	
+						  <div>
+							<p>Attendance
+								<select ng-model="attendanceToShow" id="attendanceToShow"  class="form-select w3-select w3-border w3-input"  aria-label="Default select example">
+									<option value="" selected disabled hidden></option>
+									<option value="true">true</option>
+									<option value="false">false</option>
+								</select>
+							</p>
+					 	 </div>	
+						
+						<div class="w3-center">
+							<button class="w3-button w3-center w3-purple w3-round-medium" ng-click="saveEditOrder()">SAVE</button>
+						</div>
+					</form>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+		<div id="settingsContent" class="grid-child-element green" style="display:none; width:1350px; margin: auto;">
+			<div class="d-flex" style="padding:80px;padding-bottom:0%;justify-content:space-between;">
+				<div class="d-flex w3-container w3-padding w3-margin">
+
+					<div><img src="assets/css/ccslogo.png" style="width:50px;height:50px;margin-right: 10px;"></div>
+					
+					<div class="w3-container w3-padding"> 
+						<h3 style="color:#381483;">Account Settings</h3>
+						<p style="color:grey;">Monitored by PSITS and CSPS</p>
+
+						<hr class="w3-blue">
+						
+						<div class="w3-container w3-padding w3-round-xlarge" style="width:500px;margin:auto;background-color: #edf8fa;">
+							<p>
+								<h4><b>Information</b></h4>
+							<p>
+							<p>
+								<div class="w3-container">
+									<img class="w3-center" src="assets/css/j.png" style="width: 30%;height: 30%;margin-right: 10px;">
+								</div>
+							</p>
+							<p>
+								<label><b>USERNAME</b></label>
+								<div class="w3-border w3-padding">{{ username }}</div>	
+							</p>
+
+						</div>
+						
+
+				</div>
+			</div>		
+		</div>
+</div>

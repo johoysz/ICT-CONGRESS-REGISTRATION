@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="ie-edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="assets/css/w3.css">
+		<script src="assets/js/angular.min.js"></script>
+        <script src="assets/js/angular-route.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+		<link href="https://cdn.datatables.net/v/dt/dt-2.0.2/datatables.min.css" rel="stylesheet">
+		<script src="https://cdn.datatables.net/v/dt/dt-2.0.2/datatables.min.js"></script>
+
+		<style>
+			html, body {
+				margin: 0;
+				height: 100%;
+			}
+			.piechart {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+                background-image: conic-gradient(
+                    #78c6f7 70deg,
+                    #9b1cec 0 235deg,
+                    #fbe66f 0
+                );
+            }
+			/* updated display and margin-top*/
+			.sidebar {
+				width: 150px; /* Adjust the width as needed */
+				background-color: #EEE8F6;
+				padding: 10px;
+				height: 95%;
+				position: fixed;
+				display: flex;
+				flex-direction: column;
+				margin-top: 65px;
+			}
+			.hide-button {
+				margin-top: auto;
+			}
+
+			.hide-image {
+				margin-left: auto;
+				margin-right: auto;
+			}
+			/* Button styles */
+			.w3-button {
+				display: block;
+				margin-bottom: 10px;
+				width: 100%;
+				text-align: left;
+				background-color: transparent;
+				border: none;
+			}
+
+			.w3-button.active {
+				background-color: purple;
+				color: white;
+			}
+			.sidebar {
+				transition: transform 0.3s ease-in-out;
+			}
+
+			/*update joy*/
+			.sidebar-collapse {
+				width: 80px; /* Adjust the width as needed */
+				background-color: #EEE8F6;
+				padding: 10px;
+				height: 100%;
+				position: fixed;
+				display: flex;
+				flex-direction: column;
+				margin-top: 65px;
+			}
+			
+			#bsitbar {
+				width:75%; 
+				background-color:#3F1B80;
+				color:white;
+			}
+			
+		</style>
+    </head>
+    <body ng-app="myapp"  class="w3-mobile">
+		
+
+		<div ng-view style="margin: 0;height: 100%;"></div>
+		
+        <script src="assets/js/myapp.js"></script>
+		<script>
+			
+			function createAccount() {
+				var flipMe = document.getElementById('registerFlip');
+				flipMe.style.display = "block";
+				var flipFront = document.getElementById('loginFlip');
+				flipFront.style.display = "none";
+			}
+			
+			function loginAccount() {
+				var flipMe = document.getElementById('loginFlip');
+				flipMe.style.display = "block";
+				var flipFront = document.getElementById('registerFlip');
+				flipFront.style.display = "none";
+			}	
+			
+			function showSidebar() {
+				var sidebar = document.getElementById('showSidebar');
+				sidebar.style.display = "block";
+			}
+			
+			function hideSidebar() {
+				var sidebar = document.getElementById('showSidebar');
+				sidebar.style.display = "none";
+				
+			}
+			
+			function changeContent(contentID) {
+				var contentToShow = document.getElementById(contentID + 'Content');
+				var allContent = document.querySelectorAll('.grid-child-element');
+				var allButtons = document.querySelectorAll('.w3-button');
+
+				// Hide all content sections
+				allContent.forEach(function (content) {
+					content.style.display = "none";
+				});
+
+				// Remove active class from all buttons
+				allButtons.forEach(function (button) {
+					button.classList.remove('active');
+				});
+
+				// Show the selected content section
+				contentToShow.style.display = "block";
+
+				// Add active class to the clicked button
+				var button = document.getElementById(contentID + 'Btn');
+				button.classList.add('active');
+			}
+			
+			function changeContent1(contentID) {
+				var contentToShow = document.getElementById(contentID + 'Content');
+				var allContent = document.querySelectorAll('.grid-child-element');
+				var allButtons = document.querySelectorAll('.w3-button');
+
+				// Hide all content sections
+				allContent.forEach(function (content) {
+					content.style.display = "none";
+				});
+
+				// Remove active class from all buttons
+				allButtons.forEach(function (button) {
+					button.classList.remove('active');
+				});
+
+				// Show the selected content section
+				contentToShow.style.display = "block";
+
+				// Add active class to the clicked button
+				var button = document.getElementById(contentID + 'Btn1');
+				button.classList.add('active');
+			}
+		</script>
+    </body>
+</html>

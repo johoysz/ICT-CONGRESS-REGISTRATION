@@ -1,0 +1,157 @@
+<div class="w3-padding w3-card-4" style="background-color:#210b4f; display:flex;justify-content: space-between;">
+	<div class="d-flex w3-left">
+		<img src="assets/css/uclogoround.png" style="width: 50px;height: 50px;margin-right: 10px;"><h4 style="color:white; margin-top:10px">UNIVERSITY OF CEBU - MAIN CAMPUS</h4>
+	</div>
+	<div class="d-flex w3-left" style="justify-content: space-between;">
+		<button autofocus class="w3-button w3-hover-white w3-round-medium" id="loginBtn" style="color:white; margin-top:15px; cursor: pointer;" onclick="changeContent('login')" >Home</button>
+		<button class="w3-button w3-hover-white w3-round-medium" id="aboutBtn" style="color:white; margin-top:15px; margin-left:20px; cursor: pointer;" onclick="changeContent('about')">About us</button>
+	</div>
+</div>
+
+<div id="loginContent" class="grid-child-element pink w3-container w3-padding" style="display:block;background-image: url(assets/css/background.jpg);background-repeat: no-repeat;background-attachment: fixed;background-size: cover;margin: 0;height: 100%;">
+
+		<div id="loginFlip" class="w3-card-2 w3-container w3-padding w3-round-xlarge w3-animate-top" style="width: 30%;margin: auto;background-color: white;margin-top: 5%;border: 5px solid #6937be;">
+			<div class="w3-center">
+				<img src="assets/css/ccslogo.png" style="width: 100px;">
+			</div>
+			<p>
+				<h4 style="color:#381483;text-align:center;"><b>COLLEGE OF COMPUTER STUDIES</b></h4>
+			<p>
+			<p>
+				<div class="w3-panel w3-orange w3-center" id="mes">
+					{{ message }}
+				</div>
+			<p>
+			<p>
+				<input type="text" ng-model="username" class="w3-input w3-border" placeholder="ID number">
+			<p>
+			<p>
+				<input type="password" ng-model="password" class="w3-input w3-border" placeholder="Password">
+			<p>
+			<p class=" w3-center">
+				<button class="w3-button w3-center w3-blue  w3-round-medium" ng-click="login()">LOGIN</button>
+			
+				<a href="" onclick="document.getElementById('forgotPassModal').style.display='block'" class=" w3-center w3-right">Forgot Password?</a>
+				<br/>
+				<a href="" onclick="createAccount()" class=" w3-center">Create an account</a>
+
+			</p>
+		</div>
+		<!--FORGOT PASSWORD MODAL-->
+		<div class="w3-modal" id="forgotPassModal">
+
+			<div class="w3-modal-content w3-animate-top" style="border-radius:10px; width: 30%;">
+				<div class="w3-container" style="padding:30px;">
+					<div class="w3-container">
+					  <div class="modal-header">
+						<h3 class=" modal-title w3-center">Forgot Password</h3>
+						<div class="w3-display-topright">
+							<span style="border-radius:10px;" class="w3-button" onclick="document.getElementById('forgotPassModal').style.display='none'">&times;</span>
+						</div>
+					  </div>
+						<form id="form" style="margin: 10px;">
+						  <div>
+								<p>
+									<input type="text" ng-model="username" class="w3-input w3-border" placeholder="ID number">
+								</p>	
+								<p>
+									<input type="password" ng-model="newPassword" class="w3-input w3-border" placeholder="New Password *" autofocus>
+								</p>
+						  </div>
+						  <button style="border:none;"></button>
+						  <div class="w3-center">
+							<button class="w3-button w3-center w3-purple w3-round-medium" ng-click="savePass()">Reset Password</button>
+						  </div>
+						</form>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!--REGISTER -->
+		<div id="registerFlip" class="w3-card-2 w3-container w3-padding w3-round-xlarge w3-animate-top" style="display:none; width: 40%;margin: auto;background-color: white;margin-top: 5%;border: 5px solid #6937be;">
+			<div class="w3-center">
+				<img src="assets/css/ccslogo.png" style="width: 100px;">
+			</div>
+			<p>
+				<h4 style="color:#381483;text-align:center;"><b>COLLEGE OF COMPUTER STUDIES</b></h4>
+			<p>
+			<p>
+				<div class="w3-panel w3-orange w3-center" id="mes">
+					{{ message }}
+				</div>
+			<p>
+			<h3 class="w3-center" style="margin-top: 30px;">Register Account</h3>
+					  <hr>
+					  <form id="registrationForm" style="margin: 10px;">
+						  <div>
+							  <div class="w3-half" style="padding-right: 5px; padding-bottom: 5px;">
+								  <input type="text" id="idno" ng-model="idno" class="w3-input w3-border" placeholder="ID Number" required>
+							  </div>
+							  <div class="w3-half" style="padding-left: 5px; padding-bottom: 5px;">
+								  <input type="password" id="pass" ng-model="pass" name="password" class="w3-input w3-border" placeholder="Password" required>
+							  </div>
+						  </div>
+						  <div>
+							  <div class="w3-half" style="padding-right: 5px; padding-bottom: 5px;">
+								  <input type="text" id="firstname" ng-model="firstname" name="Firstname" class="w3-input w3-border" placeholder="First name" required>
+							  </div>
+							  <div class="w3-half" style="padding-left: 5px; padding-bottom: 5px;">
+								  <input type="text" id="lastname" ng-model="lastname" name="Lastname" class="w3-input w3-border" placeholder="Last name" required>
+							  </div>
+						  </div>
+						  <div>
+							<div class="form-group w3-third">
+							
+							  <div id="courseInputWrapper" style="padding-right: 5px;">
+								<select id="course" ng-model="course" class="form-select w3-select w3-border"  aria-label="Default select example">
+								  <option value=""  disabled selected hidden>Course</option>
+								  <option value="BSCS">BSCS</option>
+								  <option value="BSIT">BSIT</option>
+								  <option value="ACT">ACT</option>
+								</select>
+							  </div>
+							</div>							
+							<div class="form-group w3-third">
+							  <div id="levelInputWrapper" style="padding-right: 5px;">
+								<select id="level" ng-model="level" class="form-select w3-select w3-border"  aria-label="Default select example">
+								  <option value="" selected disabled hidden>Level</option>
+								  <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								</select>
+							  </div>
+							</div>
+							
+							<div class="form-group w3-third">
+								<div id="sizeInputWrapper" style="padding-left: 5px;">
+									<select id="size" ng-model="size" class="form-select w3-select w3-border"  aria-label="Default select example">
+										<option value="" selected disabled hidden>Choose a size</option>
+										<option value="S">S</option>
+										<option value="M">M</option>
+										<option value="L">L</option>
+										<option value="XL">XL</option>
+										<option value="XXL">XXL</option>
+										<option value="XXXL">XXXL</option>
+									</select>
+								</div>
+								<input type="hidden" id="Size" name="Size" class="w3-input w3-border" placeholder="Size" required>
+							</div>		
+						  </div>
+						  <button style="border:none;"></button>
+						  <div class="w3-center">
+							<button class="w3-button w3-center w3-purple w3-round-medium" ng-click="saveReg()">Register</button>
+							<a href="" onclick="loginAccount()" class="w3-center">Back to login</a>
+						  </div>
+					</form>
+		</div>
+</div>
+
+<div id="aboutContent" class="grid-child-element pink w3-container w3-padding" style="display:none;background-image: url(assets/css/backgroundd.jpg);background-repeat: no-repeat;background-attachment: fixed;background-size: cover;margin: 0;height: 100%;">
+
+		<h1 class="w3-center" style="color:#210b4f; margin-top:70px">MEET THE TEAM</h1>
+		<h5 class="w3-center" style="color:#210b4f;">The minds behind this ICT Congress Website churva2 buhatan pa ni</h5>
+
+		
+</div>
